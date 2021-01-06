@@ -1,0 +1,82 @@
+TREE TRAVERSAL
+A traversal of some binary tree, t, is an algorithm that iterates through each node in t exactly
+1 time.
+
+~ InOrder Traversal ~
+A recursive algorithm that follows the left subtree: once there are no more left subtrees to process,
+we process the right subtree.
+
+The elements are processed in left-root-right order.
+
+Pseudocode:
+    inOrder(t) {
+        if(t is not empty) {
+            inOrder(left subtree of t)
+            process t's root element
+            inOrder(right subtree of t)
+        }
+    }
+
+An inorder traversal of a binary search tree will process the tree's elements in ascending order.
+
+~ PostOrder Traversal ~
+A recursive algorithm that follows the left and right subtrees before processing the root element.
+
+The elements are processed in left-right-root order.
+
+Pseudocode:
+    postOrder(t) {
+        if(t is not empty) {
+            postOrder( left subtree of t )
+            postOrder( right subtree of t )
+            process t's root element
+        } 
+    } 
+
+~ PreOrder Traversal (DFS) ~
+A recursive algorithm that processes the root and then performs preorder traversals of the left
+and right subtrees.
+
+The elements are processed in root-left-right order.
+
+Pseudocode:
+    preOrder(t) {
+        if(t is not empty) {
+            process t's root element
+            preOrder( left subtree of t )
+            preOrder( right subtree of t )
+        } 
+    } 
+
+Because a preorder traversal goes as deeply to the left as possible, it's also known as a
+depth-first-search or DFS.
+
+~ Level-Order Traversal (BFS) ~
+A recursive algorithm that processes the root, followed by the children of the root (from left to
+right), followed by the grandchildren of the root (from left to right), etc.
+
+Pseudocode (using queues to keep track of subtrees):
+    levelOrder(BinaryTree t) {
+        if(t is not empty) {
+            // enqueue current root
+            queue.enqueue(t)
+            
+            // while there are nodes to process
+            while( queue is not empty ) {
+                // dequeue next node
+                BinaryTree tree = queue.dequeue();
+                
+                process tree's root;
+                
+                // enqueue child elements from next level in order
+                if( tree has non-empty left subtree ) {
+                    queue.enqueue( left subtree of t )
+                }
+                if( tree has non-empty right subtree ) {
+                    queue.enqueue( right subtree of t )
+                }
+            }
+        } 
+    } 
+
+Because a level-order traversal goes level-by-level, it's also known as a breadth-first-search (BFS).
